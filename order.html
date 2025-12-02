@@ -19,6 +19,157 @@
         </nav>
       </header>
     </div>
+    <!--Order form-->
+    <section class="order-section">
+      <h1 class="order-title">Bëje Porosinë Tënde</h1>
+
+      <p class="order-text">
+        Plotëso të dhënat dhe zgjidh produktin që dëshiron.
+      </p>
+
+      <form class="order-form" id="orderForm">
+        <!-- Emri dhe telefoni -->
+        <div class="form-row form-row-two">
+          <div class="form-field">
+            <label for="fullName" class="form-label">Emri dhe Mbiemri</label>
+            <input
+              type="text"
+              id="fullName"
+              class="form-input"
+              placeholder="Filan fisteku"
+              required
+            />
+          </div>
+
+          <div class="form-field">
+            <label for="phone" class="form-label">Telefoni</label>
+            <input
+              type="tel"
+              id="phone"
+              class="form-input"
+              placeholder="+383 xx xxx xxx"
+              required
+            />
+          </div>
+        </div>
+
+        <!-- Email dhe qyteti -->
+        <div class="form-row form-row-two">
+          <div class="form-field">
+            <label for="email" class="form-label">Email</label>
+            <input
+              type="email"
+              id="email"
+              class="form-input"
+              placeholder="shembull@gmail.com"
+              required
+            />
+          </div>
+
+          <div class="form-field">
+            <label for="city" class="form-label">Qyteti</label>
+            <input
+              type="text"
+              id="city"
+              class="form-input"
+              placeholder="Prishtinë"
+              required
+            />
+          </div>
+        </div>
+
+        <!-- Adresa -->
+        <div class="form-row">
+          <div class="form-field">
+            <label for="address" class="form-label">Adresa</label>
+            <input
+              type="text"
+              id="address"
+              class="form-input"
+              placeholder="Rruga, nr., hyrja..."
+              required
+            />
+          </div>
+        </div>
+
+        <!-- Produkti dhe sasia -->
+        <div class="form-row form-row-two">
+          <div class="form-field">
+            <label for="product" class="form-label">Zgjedh Produktin</label>
+            <select id="product" class="form-input" required>
+              <option value="" disabled selected>Zgjedhe produktin</option>
+              <option value="sofa" data-price="450">Divan Modern – 450€</option>
+              <option value="chair" data-price="120">3</option>
+              <option value="table" data-price="280">2</option>
+              <option value="bed" data-price="520">1</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label for="quantity" class="form-label">Sasia</label>
+            <input
+              type="number"
+              id="quantity"
+              class="form-input"
+              min="1"
+              value="1"
+              required
+            />
+          </div>
+        </div>
+
+        <!-- Ngjyra dhe materiali -->
+        <div class="form-row form-row-two">
+          <div class="form-field">
+            <label for="color" class="form-label">Ngjyra</label>
+            <select id="color" class="form-input">
+              <option value="" disabled selected>Zgjedhe ngjyrën</option>
+
+              <option value="white">E bardhë</option>
+              <option value="gray">Gri</option>
+              <option value="black">E zezë</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label for="material" class="form-label">Materiali</label>
+            <select id="material" class="form-input">
+              <option value="" disabled selected>Zgjedhe materialin</option>
+              <option value="wood">Dru</option>
+              <option value="metal">Metal</option>
+              <option value="fabric">Pëlhurë</option>
+              <option value="leather">Lëkurë</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Data e dorëzimit -->
+        <div class="form-row">
+          <div class="form-field">
+            <label for="date" class="form-label">Data e Dorëzimit</label>
+            <input type="date" id="date" class="form-input" />
+          </div>
+        </div>
+
+        <!-- Shënime shtesë -->
+        <div class="form-row">
+          <div class="form-field">
+            <label for="notes" class="form-label">Shënime Shtesë</label>
+            <textarea
+              id="notes"
+              class="form-input form-textarea"
+              rows="4"
+              placeholder="Kati, hyrja, kërkesa të veçanta..."
+            ></textarea>
+          </div>
+        </div>
+
+        
+
+        
+        </div>
+      </form>
+    </section>
 
     <script src="script.js"></script>
   </body>
