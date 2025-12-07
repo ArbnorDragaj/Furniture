@@ -3,24 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="order.css" />
+      <link rel="stylesheet" href="CSS/order.css" />
+    <link rel="stylesheet" href="CSS/style.css" />
      
   </head>
   <body>
-    <div id="header">
-      <header class="navbar">
-        <a href="index.html" class="navbar__logo">title</a>
+    <div id="navbar">
 
-        <nav class="navbar_links">
-          <a href="index.html" class="nav-link">Home</a>
-          <a href="about.html" class="nav-link">About</a>
-          <a href="contact.html" class="nav-link">Contact</a>
-          <a href="" class="nav-link">Products</a>
-          <a href="order.html" class="nav-link">Order now</a>
-        </nav>
-      </header>
     </div>
+
+    
     <!--Order form-->
     <section class="order-section">
       <h1 class="order-title">Bëje Porosinë Tënde</h1>
@@ -29,7 +21,7 @@
         Plotëso të dhënat dhe zgjidh produktin që dëshiron.
       </p>
 
-      <form class="order-form" id="orderForm">
+      <form class="order-form" id="orderForm" onsubmit="">
         <!-- Emri dhe telefoni -->
         <div class="form-row form-row-two">
           <div class="form-field">
@@ -167,12 +159,14 @@
         </div>
 
         
-
+<div class="form-field" style="align-items: flex-end;">
+    <button type="submit" class="order-btn">Vazhdo te pagesa</button>
+  </div>
         
         </div>
       </form>
     </section>
 
-    <script src="script.js"></script>
+    <script src="JS/script.js"></script>
   </body>
 </html>
