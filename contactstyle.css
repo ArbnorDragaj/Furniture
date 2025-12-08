@@ -83,7 +83,7 @@
 .input-elementet button{
     padding: 10px 20px;
     background-color: #222;
-    color: white;
+    color: #ccc;
     border: none;
     border-radius: 5px;
     font-size: 16px;
@@ -93,3 +93,69 @@
     background-color: #444;
     transition: 0.3s;
 }
+.input-elementet .pic-link{
+    width: 30%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.navbar img{
+    width: 100px;
+    height: auto;
+}
+footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: #222;
+    color :white;
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+    height: auto;
+
+
+}
+.footer-content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 30%;
+    height: auto;
+    margin: 30px;
+    padding: 10px;
+    gap: 100px;
+
+}
+.info-Icons{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    
+   
+    
+}
+.info-Icons i{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width : 100px;
+    padding: auto;
+    
+}
+.text-icon{
+    display: flex;
+    flex-direction: row;
+    color:white;
+}
+.text-icon i{
+    margin-right: 10px;
+    width: 40px;
+}
+.text-icon a{
+    margin-right: 10px;
+    
+    color: white;
+    text-decoration: none;
+}
+
