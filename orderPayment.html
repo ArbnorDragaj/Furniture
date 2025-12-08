@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="CSS/orderPAY.css" />
+    <link rel="stylesheet" href="CSS/style.css" />
+    <title></title>
+  </head>
+  <body>
+    <section class="payment-section">
+      <div class="payment-methods">
+        <label class="payment-method">
+          <input type="radio" name="payMethod" checked />
+          <span>Kartelë bankare</span>
+        </label>
+        <label class="payment-method">
+          <input type="radio" name="payMethod" />
+          <span>Metodë tjetër</span>
+        </label>
+      </div>
+
+      <form class="payment-form">
+        <h1 class="payment-title">Emri në kartelë</h1>
+
+        <div class="form-field">
+          <input
+            type="text"
+            class="form-input"
+            placeholder="Emri juaj"
+            required
+          />
+        </div>
+
+        <div class="form-row form-row-two">
+          <div class="form-field">
+            <label class="form-label">Numri i kartelës</label>
+            <input
+              type="text"
+              class="form-input"
+              placeholder="XXXX XXXX XXXX XXXX"
+              required
+            />
+          </div>
+
+          <div class="form-field">
+            <label class="form-label">CVV</label>
+            <input type="text" class="form-input" placeholder="XXX" required />
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label class="form-label">Data e skadimit</label>
+          <input type="text" class="form-input" placeholder="MM/YY" required />
+        </div>
+
+        <label class="payment-check">
+          <input type="checkbox" required />
+          <span>
+            Kam lexuar dhe pajtohem me
+            <a href="#">Kushtet dhe Rregullat</a>.
+          </span>
+        </label>
+
+        <button type="submit" class="payment-btn">BËJ PAGESËN</button>
+      </form>
+    </section>
+  </body>
+</html>
