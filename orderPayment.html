@@ -45,8 +45,15 @@
 
           <div class="form-field">
             <label class="form-label">CVV</label>
-            <input type="text" class="form-input" placeholder="XXX" required />
+            <input
+              type="text"
+              class="form-input"
+              id="cvv"
+              placeholder="XXX"
+              required
+            />
           </div>
+          <div class="error" id="errorMsg"></div>
         </div>
 
         <div class="form-field">
@@ -65,5 +72,6 @@
         <button type="submit" class="payment-btn">BËJ PAGESËN</button>
       </form>
     </section>
+    <script src="JS/order.js"></script>
   </body>
 </html>
