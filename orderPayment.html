@@ -20,27 +20,31 @@
         </label>
       </div>
 
-      <form class="payment-form">
+      <form class="payment-form" id="payment-form">
         <h1 class="payment-title">Emri në kartelë</h1>
 
         <div class="form-field">
           <input
+            id="card-name"
             type="text"
             class="form-input"
             placeholder="Emri juaj"
             required
           />
+          <small class="error" id="card-name-error"></small>
         </div>
 
         <div class="form-row form-row-two">
           <div class="form-field">
             <label class="form-label">Numri i kartelës</label>
             <input
+              id="card-number"
               type="text"
               class="form-input"
               placeholder="XXXX XXXX XXXX XXXX"
               required
             />
+            <small class="error" id="card-number-error"></small>
           </div>
 
           <div class="form-field">
@@ -52,26 +56,35 @@
               placeholder="XXX"
               required
             />
+            <small class="error" id="cvv-error"></small>
           </div>
-          <div class="error" id="errorMsg"></div>
         </div>
 
         <div class="form-field">
           <label class="form-label">Data e skadimit</label>
-          <input type="text" class="form-input" placeholder="MM/YY" required />
+          <input
+            id="expiry"
+            type="text"
+            class="form-input"
+            placeholder="MM/YY"
+            required
+          />
+          <small class="error" id="expiry-error"></small>
         </div>
 
         <label class="payment-check">
-          <input type="checkbox" required />
+          <input id="terms" type="checkbox" required />
           <span>
             Kam lexuar dhe pajtohem me
             <a href="#">Kushtet dhe Rregullat</a>.
           </span>
         </label>
+        <small class="error" id="terms-error"></small>
 
         <button type="submit" class="payment-btn">BËJ PAGESËN</button>
       </form>
     </section>
+
     <script src="JS/order.js"></script>
   </body>
 </html>
