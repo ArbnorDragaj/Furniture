@@ -76,3 +76,19 @@
   font-size: 16px;
   cursor: pointer;
 }
+
+.error {
+  color: #e63946;
+  font-size: 12px;
+  margin-top: 4px;
+  min-height: 16px; /* me mos me lëviz formën shumë */
+}
+
+.input-error {
+  border-color: #e63946 !important;
+  outline: none;
+}
+
+.form-input {
+  transition: border-color 0.2s ease;
+}
