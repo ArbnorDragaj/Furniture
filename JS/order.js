@@ -141,3 +141,21 @@ input.addEventListener("input", function () {
   if (!this.value) return;
   this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);
 });
+
+/*  Data e skadimit */
+
+const expiry = document.getElementById("expiry");
+
+expiry.addEventListener("input", function () {
+  let value = this.value.replace(/\D/g, ""); // lejon vetëm numra
+
+  // kufizo në 4 shifra
+  value = value.substring(0, 4);
+
+  // vendos "/"
+  if (value.length >= 3) {
+    this.value = value.substring(0, 2) + "/" + value.substring(2);
+  } else {
+    this.value = value;
+  }
+});
