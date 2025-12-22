@@ -112,3 +112,50 @@ const cvvInput = document.getElementById("cvv");
 cvvInput.addEventListener("input", (e) => {
   e.target.value = e.target.value.replace(/[^0-9]/g, "").slice(0, 3);
 });
+
+/*  Numri i karteles */
+
+const cardInput = document.getElementById("card-number");
+
+cardInput.addEventListener("input", function () {
+  // 1. Largon te gjithe karakteret që nuk janë numra
+
+  let value = this.value.replace(/\D/g, "");
+
+  //  lejon maksimumi 16 shifra
+
+  value = value.substring(0, 16);
+
+  // 2. Ndan ne grupe me nga 4 shifra
+  const parts = value.match(/.{1,4}/g);
+
+  // 3. vendos hapsirat mes grupeve
+  this.value = parts ? parts.join(" ") : "";
+});
+
+/*  Emri ne kartele*/
+
+const input = document.getElementById("card-name");
+
+input.addEventListener("input", function () {
+  if (!this.value) return;
+  this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);
+});
+
+/*  Data e skadimit */
+
+const expiry = document.getElementById("expiry");
+
+expiry.addEventListener("input", function () {
+  let value = this.value.replace(/\D/g, ""); // lejon vetëm numra
+
+  // kufizo në 4 shifra
+  value = value.substring(0, 4);
+
+  // vendos "/"
+  if (value.length >= 3) {
+    this.value = value.substring(0, 2) + "/" + value.substring(2);
+  } else {
+    this.value = value;
+  }
+});
