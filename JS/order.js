@@ -112,3 +112,23 @@ const cvvInput = document.getElementById("cvv");
 cvvInput.addEventListener("input", (e) => {
   e.target.value = e.target.value.replace(/[^0-9]/g, "").slice(0, 3);
 });
+
+/*  Numri i karteles */
+
+const cardInput = document.getElementById("card-number");
+
+cardInput.addEventListener("input", function () {
+  // 1. Largon te gjithe karakteret që nuk janë numra
+
+  let value = this.value.replace(/\D/g, "");
+
+  //  lejon maksimumi 16 shifra
+
+  value = value.substring(0, 16);
+
+  // 2. Ndan ne grupe me nga 4 shifra
+  const parts = value.match(/.{1,4}/g);
+
+  // 3. vendos hapsirat mes grupeve
+  this.value = parts ? parts.join(" ") : "";
+});
