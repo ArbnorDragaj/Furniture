@@ -102,7 +102,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!isValid) {
       e.preventDefault();
     } else {
-      alert("Të dhënat janë në rregull ✔️");
+      /*Alert */
+      Swal.fire({
+        title: "Sukses!",
+        text: "Pagesa u krye me sukses 😊",
+        icon: "success",
+        confirmButtonText: "OK",
+      });
     }
   });
 });
@@ -159,3 +165,5 @@ expiry.addEventListener("input", function () {
     this.value = value;
   }
 });
+
+/*Alert*/
