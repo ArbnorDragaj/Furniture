@@ -132,3 +132,12 @@ cardInput.addEventListener("input", function () {
   // 3. vendos hapsirat mes grupeve
   this.value = parts ? parts.join(" ") : "";
 });
+
+/*  Emri ne kartele*/
+
+const input = document.getElementById("card-name");
+
+input.addEventListener("input", function () {
+  if (!this.value) return;
+  this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);
+});
