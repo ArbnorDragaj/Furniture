@@ -102,12 +102,14 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!isValid) {
       e.preventDefault();
     } else {
-      /*Alert */
+      /*Alerti */
       Swal.fire({
-        title: "Sukses!",
+        title: "Urime!",
         text: "Pagesa u krye me sukses 😊",
         icon: "success",
         confirmButtonText: "OK",
+      }).then(() => {
+        form.reset();
       });
     }
   });
