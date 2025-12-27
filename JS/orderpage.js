@@ -1,8 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("orderForm");
-  const STORAGE_KEY = "orderFormData";
 
-  // Fushat
   const fields = {
     fullName: document.getElementById("fullName"),
     phone: document.getElementById("phone"),
@@ -31,26 +29,83 @@ document.addEventListener("DOMContentLoaded", () => {
     notes: document.getElementById("notes-error"),
   };
 
-  /* ---------- Helper functions ---------- */
+  const totalEl = document.getElementById("orderTotal");
 
-  function setError(fieldName, message) {
-    const input = fields[fieldName];
-    const errorEl = errors[fieldName];
-    if (!input || !errorEl) return;
-    input.classList.add("input-error");
-    errorEl.textContent = message;
+  function resetErrors() {
+    Object.values(errors).forEach((el) => el && (el.textContent = ""));
+    Object.values(fields).forEach((input) =>
+      input && input.classList.remove("input-error")
+    );
   }
 
-  function clearError(fieldName) {
-    const input = fields[fieldName];
-    const errorEl = errors[fieldName];
-    if (!input || !errorEl) return;
-    input.classList.remove("input-error");
-    errorEl.textContent = "";
+  function setError(field, message) {
+    fields[field].classList.add("input-error");
+    errors[field].textContent = message;
   }
 
-  function getFormData() {
-    return {
+  function updateTotal() {
+    const option = fields.product.options[fields.product.selectedIndex];
+    const price = Number(option?.dataset?.price || 0);
+    let qty = Number(fields.quantity.value || 1);
+
+    if (qty < 1) qty = 1;
+    const total = price * qty;
+    totalEl.textContent = total > 0 ? `${total}€` : "0€";
+  }
+
+  function validate() {
+    resetErrors();
+    let valid = true;
+
+    if (!fields.fullName.value.trim()) {
+      setError("fullName", "Shkruani emrin.");
+      valid = false;
+    }
+
+    const phoneRegex = /^\+383\s?\d{2}\s?\d{3}\s?\d{3}$/;
+    if (!phoneRegex.test(fields.phone.value.trim())) {
+      setError("phone", "Formati: +383 44 123 456");
+      valid = false;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(fields.email.value.trim())) {
+      setError("email", "Email i pavlefshëm.");
+      valid = false;
+    }
+
+    if (!fields.city.value.trim()) {
+      setError("city", "Shkruani qytetin.");
+      valid = false;
+    }
+
+    if (!fields.address.value.trim()) {
+      setError("address", "Shkruani adresën.");
+      valid = false;
+    }
+
+    if (!fields.product.value) {
+      setError("product", "Zgjidh produktin.");
+      valid = false;
+    }
+
+    if (fields.quantity.value < 1) {
+      setError("quantity", "Sasia min 1.");
+      valid = false;
+    }
+
+    return valid;
+  }
+
+  fields.product.addEventListener("change", updateTotal);
+  fields.quantity.addEventListener("input", updateTotal);
+  updateTotal();
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (!validate()) return;
+
+    const data = {
       fullName: fields.fullName.value,
       phone: fields.phone.value,
       email: fields.email.value,
@@ -62,135 +117,10 @@ document.addEventListener("DOMContentLoaded", () => {
       material: fields.material.value,
       date: fields.date.value,
       notes: fields.notes.value,
+      total: totalEl.textContent,
     };
-  }
 
-  function saveFormData() {
-    const data = getFormData();
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-  }
-
-  function restoreFormData() {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (!saved) return;
-    try {
-      const data = JSON.parse(saved);
-      Object.keys(fields).forEach((key) => {
-        if (data[key] !== undefined && data[key] !== null) {
-          fields[key].value = data[key];
-        }
-      });
-    } catch (err) {
-      console.error("Gabim gjatë leximit nga localStorage", err);
-    }
-  }
-
-  /* ---------- Restore data kur hapet faqja ---------- */
-  restoreFormData();
-
-  /* ---------- Pastrim errorav gjatë shkrimit + ruajtje ---------- */
-  Object.keys(fields).forEach((key) => {
-    const input = fields[key];
-
-    input.addEventListener("input", () => {
-      clearError(key);
-      saveFormData();
-    });
-
-    if (input.tagName === "SELECT" || input.type === "date") {
-      input.addEventListener("change", () => {
-        clearError(key);
-        saveFormData();
-      });
-    }
-  });
-
-  /* ---------- Validimi në submit ---------- */
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    let isValid = true;
-
-    // pastron gabimet
-    Object.keys(fields).forEach((key) => clearError(key));
-
-    const data = getFormData();
-
-    // Emri
-    if (!data.fullName || data.fullName.trim().length < 3) {
-      setError("fullName", "Shkruaj emrin dhe mbiemrin (min 3 karaktere).");
-      isValid = false;
-    }
-
-    // Telefoni
-    const phoneRegex = /^[0-9+\s]{7,20}$/;
-    if (!phoneRegex.test(data.phone.trim())) {
-      setError("phone", "Numri i telefonit është i pavlefshëm.");
-      isValid = false;
-    }
-
-    // Email
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(data.email.trim())) {
-      setError("email", "Email-i nuk është valid.");
-      isValid = false;
-    }
-
-    // Qyteti
-    if (!data.city || data.city.trim().length < 2) {
-      setError("city", "Shkruaj qytetin.");
-      isValid = false;
-    }
-
-    // Adresa
-    if (!data.address || data.address.trim().length < 5) {
-      setError("address", "Shkruaj adresën e plotë.");
-      isValid = false;
-    }
-
-    // Produkti
-    if (!data.product) {
-      setError("product", "Zgjedh produktin.");
-      isValid = false;
-    }
-
-    // Sasia
-    const quantityNum = parseInt(data.quantity, 10);
-    if (isNaN(quantityNum) || quantityNum < 1) {
-      setError("quantity", "Sasia duhet të jetë së paku 1.");
-      isValid = false;
-    }
-
-    // Ngjyra
-    if (!data.color) {
-      setError("color", "Zgjedh ngjyrën.");
-      isValid = false;
-    }
-
-    // Materiali
-    if (!data.material) {
-      setError("material", "Zgjedh materialin.");
-      isValid = false;
-    }
-
-    // Data – jo në të kaluarën (opsionale)
-    if (data.date) {
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-      const selected = new Date(data.date);
-
-      if (selected < today) {
-        setError("date", "Data e dorëzimit nuk mund të jetë në të kaluarën.");
-        isValid = false;
-      }
-    }
-
-    if (!isValid) {
-      return;
-    }
-
-    saveFormData();
-
-    // Redirect te faqja e pagesës
+    localStorage.setItem("orderData", JSON.stringify(data));
     window.location.href = "orderPayment.html";
   });
 });
