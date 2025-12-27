@@ -140,3 +140,35 @@
   font-size: 0.9em;
   margin-top: 5px;
 }
+
+
+
+.popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: none;            
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+
+.popup.show {
+  display: flex;
+}
+
+.popup-content {
+  background: #fff;
+  padding: 25px;
+  width: 60%;
+  max-height: 80vh;
+  overflow-y: auto;
+  border-radius: 10px;
+}
+
+.close {
+  font-size: 30px;
+  float: right;
+  cursor: pointer;
+}
