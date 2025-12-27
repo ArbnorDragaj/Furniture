@@ -122,5 +122,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     localStorage.setItem("orderData", JSON.stringify(data));
     window.location.href = "orderPayment.html";
+
   });
 });

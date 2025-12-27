@@ -113,3 +113,33 @@ document.addEventListener("DOMContentLoaded", () => {
     form.reset();
   });
 });
+
+
+//pop up
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const termsLink = document.querySelector(".payment-check a");
+  const popup = document.getElementById("popup");
+  const closePopup = document.getElementById("closePopup");
+
+  if (!termsLink || !popup || !closePopup) return;
+
+  
+  termsLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    popup.classList.add("show");
+  });
+
+  // me ket pjes mbyllet me iconen X
+  closePopup.addEventListener("click", () => {
+    popup.classList.remove("show");
+  });
+
+  // kjo pjes mundeson qe kur te klikojsh jasht popup box te mbyllet
+  window.addEventListener("click", (e) => {
+    if (e.target === popup) {
+      popup.classList.remove("show");
+    }
+  });
+});
