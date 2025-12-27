@@ -46,21 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
     else e.target.value = v;
   });
 
-  function luhn(num) {
-    num = num.replace(/\s/g, "");
-    let sum = 0,
-      toggle = false;
-    for (let i = num.length - 1; i >= 0; i--) {
-      let n = +num[i];
-      if (toggle) {
-        n *= 2;
-        if (n > 9) n -= 9;
-      }
-      sum += n;
-      toggle = !toggle;
-    }
-    return sum % 10 === 0;
-  }
+  
 
   function validate() {
     clearErrors();
@@ -75,10 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (num.length < 16) {
       setError(cardNumberInput, numberError, "Duhet 16 shifra.");
       ok = false;
-    } else if (!luhn(cardNumberInput.value)) {
-      setError(cardNumberInput, numberError, "Kartela jo e vlefshme.");
-      ok = false;
-    }
+    } 
 
     if (cvvInput.value.length !== 3) {
       setError(cvvInput, cvvError, "3 shifra.");
