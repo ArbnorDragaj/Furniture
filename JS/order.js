@@ -13,159 +13,120 @@ document.addEventListener("DOMContentLoaded", () => {
   const cvvError = document.getElementById("cvv-error");
   const termsError = document.getElementById("terms-error");
 
-  /* ================= CVV  ================= */
-  cvvInput.addEventListener("input", (e) => {
-    let value = e.target.value;
+  function clearErrors() {
+    [nameError, numberError, expiryError, cvvError, termsError].forEach(
+      (e) => (e.textContent = "")
+    );
+    [cardNameInput, cardNumberInput, expiryInput, cvvInput].forEach((i) =>
+      i.classList.remove("input-error")
+    );
+  }
 
-    // lejo vetëm numra
-    value = value.replace(/[^0-9]/g, "");
+  function setError(input, errorEl, message) {
+    input.classList.add("input-error");
+    errorEl.textContent = message;
+  }
 
-    // max 3 shifra
-    if (value.length > 3) value = value.slice(0, 3);
-
-    e.target.value = value;
-    cvvError.textContent = "";
+  cardNumberInput.addEventListener("input", (e) => {
+    let v = e.target.value.replace(/\D/g, "");
+    if (v.length > 16) v = v.slice(0, 16);
+    e.target.value = v.replace(/(.{4})/g, "$1 ").trim();
   });
 
-  /* ================= FORM VALIDATION ================= */
-  form.addEventListener("submit", (e) => {
-    let isValid = true;
+  cvvInput.addEventListener("input", (e) => {
+    let v = e.target.value.replace(/\D/g, "");
+    if (v.length > 3) v = v.slice(0, 3);
+    e.target.value = v;
+  });
 
-    // pastro gabimet
-    [cardNameInput, cardNumberInput, expiryInput, cvvInput].forEach((el) =>
-      el.classList.remove("input-error")
-    );
+  expiryInput.addEventListener("input", (e) => {
+    let v = e.target.value.replace(/\D/g, "");
+    if (v.length > 4) v = v.slice(0, 4);
+    if (v.length >= 3) e.target.value = v.slice(0, 2) + "/" + v.slice(2);
+    else e.target.value = v;
+  });
 
-    [nameError, numberError, expiryError, cvvError, termsError].forEach(
-      (el) => (el.textContent = "")
-    );
+  function luhn(num) {
+    num = num.replace(/\s/g, "");
+    let sum = 0,
+      toggle = false;
+    for (let i = num.length - 1; i >= 0; i--) {
+      let n = +num[i];
+      if (toggle) {
+        n *= 2;
+        if (n > 9) n -= 9;
+      }
+      sum += n;
+      toggle = !toggle;
+    }
+    return sum % 10 === 0;
+  }
 
-    /* -------- 1. Emri në kartelë -------- */
-    const nameValue = cardNameInput.value.trim();
-    if (nameValue.length < 3) {
-      nameError.textContent = "Shkruaj emrin e plotë në kartelë.";
-      cardNameInput.classList.add("input-error");
-      isValid = false;
+  function validate() {
+    clearErrors();
+    let ok = true;
+
+    if (!cardNameInput.value.trim()) {
+      setError(cardNameInput, nameError, "Shkruani emrin.");
+      ok = false;
     }
 
-    /* -------- 2. Numri i kartelës -------- */
-    const rawNumber = cardNumberInput.value.replace(/\s+/g, "");
-    if (!/^\d{16}$/.test(rawNumber)) {
-      numberError.textContent = "Numri i kartelës duhet të ketë 16 shifra.";
-      cardNumberInput.classList.add("input-error");
-      isValid = false;
+    const num = cardNumberInput.value.replace(/\s/g, "");
+    if (num.length < 16) {
+      setError(cardNumberInput, numberError, "Duhet 16 shifra.");
+      ok = false;
+    } else if (!luhn(cardNumberInput.value)) {
+      setError(cardNumberInput, numberError, "Kartela jo e vlefshme.");
+      ok = false;
     }
 
-    /* -------- 3. Data e skadimit -------- */
-    const expiry = expiryInput.value.trim();
-    const match = expiry.match(/^(\d{2})\/(\d{2})$/);
+    if (cvvInput.value.length !== 3) {
+      setError(cvvInput, cvvError, "3 shifra.");
+      ok = false;
+    }
 
-    if (!match) {
-      expiryError.textContent = "Shkruaj datën si MM/YY.";
-      expiryInput.classList.add("input-error");
-      isValid = false;
+    const ex = expiryInput.value.split("/");
+    if (ex.length !== 2) {
+      setError(expiryInput, expiryError, "MM/YY");
+      ok = false;
     } else {
-      const month = parseInt(match[1], 10);
-      const year = parseInt("20" + match[2], 10);
+      const m = +ex[0];
+      const y = +ex[1];
+      const now = new Date();
+      const cy = now.getFullYear() % 100;
+      const cm = now.getMonth() + 1;
 
-      if (month < 1 || month > 12) {
-        expiryError.textContent = "Muaji duhet të jetë mes 01 dhe 12.";
-        expiryInput.classList.add("input-error");
-        isValid = false;
-      } else {
-        const now = new Date();
-        const endOfMonth = new Date(year, month, 0);
-
-        if (endOfMonth < now) {
-          expiryError.textContent = "Kjo kartelë ka skaduar.";
-          expiryInput.classList.add("input-error");
-          isValid = false;
-        }
+      if (m < 1 || m > 12) {
+        setError(expiryInput, expiryError, "Muaj i pavlefshëm.");
+        ok = false;
+      } else if (y < cy || (y === cy && m < cm)) {
+        setError(expiryInput, expiryError, "Kartela ka skaduar.");
+        ok = false;
       }
     }
 
-    /* -------- 4. CVV -------- */
-    const cvvValue = cvvInput.value.trim();
-    if (!/^\d{3}$/.test(cvvValue)) {
-      cvvError.textContent = "CVV duhet të ketë saktësisht 3 numra.";
-      cvvInput.classList.add("input-error");
-      isValid = false;
-    }
-
-    /* -------- 5. Terms Checkbox -------- */
     if (!termsCheckbox.checked) {
-      termsError.textContent = "Duhet të pranosh Kushtet dhe Rregullat.";
-      isValid = false;
+      termsError.textContent = "Duhet të pranoni kushtet.";
+      ok = false;
     }
 
-    /* -------- STOP SUBMIT IF ERRORS -------- */
-    if (!isValid) {
-      e.preventDefault();
-    } else {
-      /*Alerti */
+    return ok;
+  }
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if (!validate()) return;
+
+    if (typeof Swal !== "undefined") {
       Swal.fire({
-        title: "Urime!",
-        text: "Pagesa u krye me sukses 😊",
         icon: "success",
-        confirmButtonText: "OK",
-      }).then(() => {
-        form.reset();
+        title: "Pagesa u krye me sukses!",
+        text: "Faleminderit për porosinë 😊",
       });
+    } else {
+      alert("Pagesa u krye me sukses!");
     }
+
+    form.reset();
   });
 });
-
-const cvvInput = document.getElementById("cvv");
-
-cvvInput.addEventListener("input", (e) => {
-  e.target.value = e.target.value.replace(/[^0-9]/g, "").slice(0, 3);
-});
-
-/*  Numri i karteles */
-
-const cardInput = document.getElementById("card-number");
-
-cardInput.addEventListener("input", function () {
-  // 1. Largon te gjithe karakteret që nuk janë numra
-
-  let value = this.value.replace(/\D/g, "");
-
-  //  lejon maksimumi 16 shifra
-
-  value = value.substring(0, 16);
-
-  // 2. Ndan ne grupe me nga 4 shifra
-  const parts = value.match(/.{1,4}/g);
-
-  // 3. vendos hapsirat mes grupeve
-  this.value = parts ? parts.join(" ") : "";
-});
-
-/*  Emri ne kartele*/
-
-const input = document.getElementById("card-name");
-
-input.addEventListener("input", function () {
-  if (!this.value) return;
-  this.value = this.value.charAt(0).toUpperCase() + this.value.slice(1);
-});
-
-/*  Data e skadimit */
-
-const expiry = document.getElementById("expiry");
-
-expiry.addEventListener("input", function () {
-  let value = this.value.replace(/\D/g, ""); // lejon vetëm numra
-
-  // kufizo në 4 shifra
-  value = value.substring(0, 4);
-
-  // vendos "/"
-  if (value.length >= 3) {
-    this.value = value.substring(0, 2) + "/" + value.substring(2);
-  } else {
-    this.value = value;
-  }
-});
-
-/*Alert*/
