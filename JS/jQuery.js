@@ -21,3 +21,27 @@ observer.observe(document.body, {
   subtree: true,
   attributeFilter: ["class"]
 });
+
+
+// Jquery
+
+$(".order-btn, .payment-btn").on("click", function (e) {
+  const $btn = $(this);
+
+  const ripple = $("<span></span>");
+  ripple.addClass("ripple-effect");
+
+  const x = e.pageX - $btn.offset().left;
+  const y = e.pageY - $btn.offset().top;
+
+  ripple.css({
+    left: x,
+    top: y
+  });
+
+  $btn.append(ripple);
+
+  setTimeout(() => {
+    ripple.remove();
+  }, 600);
+});
