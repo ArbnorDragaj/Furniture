@@ -143,3 +143,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+const cardNameInput = document.getElementById("card-name");
+
+cardNameInput.addEventListener("input", function () {
+  let value = this.value
+    .toLowerCase()
+    .replace(/\b\w/g, char => char.toUpperCase());
+
+  this.value = value;
+});
