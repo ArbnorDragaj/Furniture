@@ -146,13 +146,12 @@
 .popup {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.6);
-  display: none;            
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
   justify-content: center;
   align-items: center;
   z-index: 999;
 }
-
 
 .popup.show {
   display: flex;
@@ -160,18 +159,42 @@
 
 .popup-content {
   background: #fff;
-  padding: 25px;
-  width: 60%;
+  padding: 30px;
+  width: 90%;
+  max-width: 600px;
   max-height: 80vh;
   overflow-y: auto;
-  border-radius: 10px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.popup-content h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.terms-paragraph {
+  margin-bottom: 15px;
+  line-height: 1.6;
+  color: #555;
 }
 
 .close {
-  font-size: 30px;
+  font-size: 28px;
   float: right;
   cursor: pointer;
+  color: #999;
+  margin-top: -10px;
+  margin-right: -10px;
 }
+
+.close:hover {
+  color: #333;
+}
+
+
+
 
 .ripple-effect {
   position: absolute;
