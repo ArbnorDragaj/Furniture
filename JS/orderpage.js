@@ -124,4 +124,31 @@ document.addEventListener("DOMContentLoaded", () => {
     window.location.href = "orderPayment.html";
 
   });
+  const detailsBtn = document.getElementById("detailsBtn");
+
+if (detailsBtn) {
+  detailsBtn.addEventListener("click", () => {
+    if (!validate()) return;
+
+    const data = {
+      fullName: fields.fullName.value,
+      phone: fields.phone.value,
+      email: fields.email.value,
+      city: fields.city.value,
+      address: fields.address.value,
+      product: fields.product.value,
+      quantity: fields.quantity.value,
+      color: fields.color.value,
+      material: fields.material.value,
+      date: fields.date.value,
+      notes: fields.notes.value,
+      total: totalEl.textContent || "0€",
+    };
+
+    localStorage.setItem("orderData", JSON.stringify(data));
+    window.location.href = "orderDetails.html";
+  });
+}
 });
+
+

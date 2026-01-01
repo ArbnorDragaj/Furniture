@@ -218,3 +218,43 @@
   position: relative;
   overflow: hidden;
 }
+
+
+.checkout-highlights {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 25px;
+}
+
+.highlight-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: #f8f8ff;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 13px;
+}
+
+.highlight-icon {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.highlight-item strong {
+  display: block;
+  margin-bottom: 2px;
+}
+
+.highlight-item p {
+  margin: 0;
+  color: #555;
+  font-size: 12px;
+}
+
+@media (max-width: 700px) {
+  .checkout-highlights {
+    grid-template-columns: 1fr;
+  }
+}
