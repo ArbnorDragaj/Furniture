@@ -1,162 +1,169 @@
 <!DOCTYPE html>
-<html lang="sq">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Detajet e Porosisë</title>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order Details</title>
 
-    <!-- Stilet ekzistuese të projektit -->
-    <link rel="stylesheet" href="CSS/style.css" />
-    <link rel="stylesheet" href="CSS/order.css" />
-    <link rel="stylesheet" href="CSS/orderPAY.css" />
-  </head>
 
-  <body>
-    <!-- Navbar (mbushet nga script.js) -->
-    <div id="navbar"></div>
+  <link rel="stylesheet" href="CSS/orderDetails.css" />
 
-    <!-- Ketu React shfaq detajet e porosisë -->
-    <section class="order-section">
-      <div id="order-details-root"></div>
-    </section>
 
-    <!-- Navbar script -->
-    <script src="JS/script.js"></script>
+  <link rel="stylesheet" href="CSS/style.css" />
+  <link rel="stylesheet" href="CSS/oDetails.css" />
+</head>
 
-    <!-- React + ReactDOM + Babel -->
-    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<body>
 
-    <!-- React kodi ynë -->
-    <script type="text/babel" data-presets="env,react">
-      const { useState, useEffect } = React;
+  <div id="navbar"></div>
 
-      // Emrat që do t'i shfaqim për produktet (vlerat vijnë nga order.html)
-      const PRODUCT_LABELS = {
-        sofa: "Divan Modern 450€",
-        chair: "Karrige",
-        table: "Tavolinë",
-        bed: "Shtrat",
-      };
+  <div class="order-details-wrapper">
 
-      function OrderDetails() {
-        const [order, setOrder] = useState(null);
 
-        // Kur hapet faqja, lexojmë orderData nga localStorage
-        useEffect(() => {
-          const raw = localStorage.getItem("orderData");
-          if (!raw) return;
+    <div class="checkout-steps">
+      <div class="step completed">📝 Order</div>
+      <div class="step active">👁️‍🗨️ Details</div>
+      <div class="step">💳 Payment</div>
+    </div>
 
-          try {
-            const parsed = JSON.parse(raw);
-            setOrder(parsed);
-          } catch (err) {
-            console.log("Gabim gjatë leximit të orderData", err);
-          }
-        }, []);
+    <div id="order-details-root"></div>
+  </div>
 
-        // Fshin porosinë nga localStorage dhe nga UI
-        const handleClear = () => {
-          localStorage.removeItem("orderData");
-          setOrder(null);
-        };
 
-        // Nëse nuk ka porosi të ruajtur
-        if (!order) {
-          return (
-            <div>
-              <h1 className="order-title">Detajet e Porosisë</h1>
-              <p className="order-text">
-                Nuk ka asnjë porosi të ruajtur. Ju lutem plotësoni porosinë në faqen Order.
-              </p>
+  <script src="JS/script.js"></script>
 
-              <button
-                type="button"
-                className="order-btn"
-                onClick={() => (window.location.href = "order.html")}
-              >
-                Shko te faqja e porosisë
-              </button>
-            </div>
-          );
+  <!-- React -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+
+    const PRODUCT_LABELS = {
+      sofa: "Modern Sofa – 450€",
+      chair: "Chair",
+      table: "Table",
+      bed: "Bed",
+    };
+
+    function OrderDetails() {
+      const [order, setOrder] = useState(null);
+
+
+      useEffect(() => {
+        const raw = localStorage.getItem("orderData");
+        if (!raw) return;
+
+        try {
+          setOrder(JSON.parse(raw));
+        } catch {
+          console.log("Error while reading order data");
         }
+      }, []);
 
-        const productName = PRODUCT_LABELS[order.product] || order.product;
-
+      
+      if (!order) {
         return (
-          <div>
-            <h1 className="order-title">Detajet e Porosisë</h1>
-
-            <p className="order-text">
-              Këtu po shfaqen vetëm detajet e porosisë, pa emër, mbiemër, telefon apo adresë.
+          <div className="order-details-card">
+            <h2>No saved order</h2>
+            <p>
+              Please go back to the order page and fill in your order first.
             </p>
 
-            {/* Karta me përmbledhjen e porosisë */}
-            <div className="order-summary-row">
-              <div
-                className="order-summary"
-                style={{ flexDirection: "column", alignItems: "flex-start" }}
-              >
-                <strong>Përmbledhja e Porosisë</strong>
-
-                <span>Produkti: {productName}</span>
-                <span>Sasia: {order.quantity || 1}</span>
-                {order.color && <span>Ngjyra: {order.color}</span>}
-                {order.material && <span>Materiali: {order.material}</span>}
-                {order.date && <span>Data e dorëzimit: {order.date}</span>}
-                {order.notes && <span>Shënime: {order.notes}</span>}
-              </div>
-
-              <div style={{ textAlign: "right" }}>
-                <span>Totali</span>
-                <div
-                  style={{
-                    fontSize: "22px",
-                    fontWeight: 600,
-                    marginTop: "4px",
-                  }}
-                >
-                  {order.total || "0€"}
-                </div>
-              </div>
-            </div>
-
-            {/* Butonat e navigimit */}
-            <div className="order-actions">
-              <button
-                type="button"
-                className="order-btn order-btn-secondary"
-                onClick={() => (window.location.href = "order.html")}
-              >
-                Kthehu te porosia
-              </button>
-
-              <button
-                type="button"
-                className="order-btn"
-                onClick={() => (window.location.href = "orderPayment.html")}
-              >
-                Vazhdo te pagesa
-              </button>
-            </div>
-
-            {/* Butoni për pastrim */}
             <button
-              type="button"
               className="order-btn"
-              style={{ marginTop: "12px" }}
-              onClick={handleClear}
+              onClick={() => (window.location.href = "order.html")}
             >
-              Pastro porosinë
+              Go to order page
             </button>
           </div>
         );
       }
 
-      const rootElement = document.getElementById("order-details-root");
-      const root = ReactDOM.createRoot(rootElement);
-      root.render(<OrderDetails />);
-    </script>
-  </body>
+      const productName = PRODUCT_LABELS[order.product] || order.product;
+
+      return (
+        <div className="order-details-card">
+          <span className="order-badge">
+            Active • Order in progress
+          </span>
+
+          <div className="details-header">
+            <div>
+              <h2>📦 Order Overview</h2>
+              <p>Review your order details before continuing.</p>
+            </div>
+
+            <div className="total-box">
+              <span>Total</span>
+              <strong>{order.total || "0€"}</strong>
+            </div>
+          </div>
+
+          <div className="details-content">
+            <p>
+              <strong>Product:</strong> {productName}
+            </p>
+            <p>
+              <strong>Quantity:</strong> {order.quantity || 1}
+            </p>
+            {order.color && (
+              <p>
+                <strong>Color:</strong> {order.color}
+              </p>
+            )}
+            {order.material && (
+              <p>
+                <strong>Material:</strong> {order.material}
+              </p>
+            )}
+            {order.date && (
+              <p>
+                <strong>Delivery date:</strong> {order.date}
+              </p>
+            )}
+            {order.notes && (
+              <p>
+                <strong>Notes:</strong> {order.notes}
+              </p>
+            )}
+          </div>
+
+          <div className="order-actions">
+            <button
+              className="order-btn order-btn-secondary"
+              onClick={() => (window.location.href = "order.html")}
+            >
+              Back to order
+            </button>
+
+            <button
+              className="order-btn"
+              onClick={() => (window.location.href = "orderPayment.html")}
+            >
+              Continue to payment
+            </button>
+          </div>
+
+          <button
+            className="order-btn"
+            style={{ marginTop: "12px" }}
+            onClick={() => {
+              localStorage.removeItem("orderData");
+              window.location.reload();
+            }}
+          >
+            Clear order
+          </button>
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(
+      document.getElementById("order-details-root")
+    ).render(<OrderDetails />);
+  </script>
+
+</body>
 </html>
