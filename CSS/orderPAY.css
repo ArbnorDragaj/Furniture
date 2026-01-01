@@ -217,6 +217,13 @@ body {
   float: right;
   font-size: 24px;
   cursor: pointer;
+  color: #999;
+  margin-top: -10px;
+  margin-right: -10px;
+}
+
+.close:hover {
+  color: #333;
 }
 
 @media (max-width: 700px) {
