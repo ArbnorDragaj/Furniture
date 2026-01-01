@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     quantity: document.getElementById("quantity-error"),
     color: document.getElementById("color-error"),
     material: document.getElementById("material-error"),
-    date: document.getElementById("date-error"),
+  
     notes: document.getElementById("notes-error"),
   };
 
@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
       quantity: fields.quantity.value,
       color: fields.color.value,
       material: fields.material.value,
-      date: fields.date.value,
+  
       notes: fields.notes.value,
       total: totalEl.textContent,
     };
@@ -140,7 +140,7 @@ if (detailsBtn) {
       quantity: fields.quantity.value,
       color: fields.color.value,
       material: fields.material.value,
-      date: fields.date.value,
+      
       notes: fields.notes.value,
       total: totalEl.textContent || "0€",
     };
