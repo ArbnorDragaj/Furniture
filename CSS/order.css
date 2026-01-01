@@ -209,3 +209,25 @@
     align-items: flex-start;
   }
 }
+
+
+
+.order-extra-actions {
+  margin-top: 16px;
+  text-align: right;   
+}
+
+
+.order-btn-secondary {
+  background-color: #ffffff;
+  color: #111111;
+  border: 1px solid #111111;
+  display: inline-block;
+  text-decoration: none;
+}
+
+
+.order-btn-secondary:hover {
+  background-color: #f3f4f6;
+  color: #000000;
+}
