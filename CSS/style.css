@@ -55,7 +55,7 @@
   left: 50%;
   width: 0;
   height: 2px;
-  background: #7a5af5;
+  background: white;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   transform: translateX(-50%);
 }
