@@ -5,164 +5,208 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Order Details</title>
 
+  <!-- Bootstrap UI Library -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
 
+  <!-- Existing project styles (do not change UI) -->
   <link rel="stylesheet" href="CSS/orderDetails.css" />
-
-
   <link rel="stylesheet" href="CSS/style.css" />
   <link rel="stylesheet" href="CSS/oDetails.css" />
+
 </head>
 
 <body>
 
+  <!-- Navbar loaded from existing JS -->
   <div id="navbar"></div>
 
-  <div class="order-details-wrapper">
+  <!-- Order details wrapper -->
+<div class="order-details-wrapper bootstrap-scope">
 
 
+    <!-- Checkout steps -->
     <div class="checkout-steps">
-      <div class="step completed">📝 Order</div>
-      <div class="step active">👁️‍🗨️ Details</div>
-      <div class="step">💳 Payment</div>
+      <div class="step completed">Order</div>
+      <div class="step active">Details</div>
+      <div class="step">Payment</div>
     </div>
 
+    <!-- React root -->
     <div id="order-details-root"></div>
   </div>
 
-
   <script src="JS/script.js"></script>
 
-  <!-- React -->
+  <!-- React CDN -->
   <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+
+  <!-- Babel for JSX -->
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-  <script type="text/babel">
-    const { useState, useEffect } = React;
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
+  <script type="text/babel">
+    const { useState, useEffect, useMemo } = React;
+
+    /* LocalStorage key */
+    const STORAGE_KEY = "orderData";
+
+    /* Product labels */
     const PRODUCT_LABELS = {
-      sofa: "Modern Sofa – 450€",
+      sofa: "Modern Sofa - 450 EUR",
       chair: "Chair",
       table: "Table",
       bed: "Bed",
     };
 
-    function OrderDetails() {
-      const [order, setOrder] = useState(null);
+    /* Read order data from localStorage */
+    function readOrder() {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return null;
 
-
-      useEffect(() => {
-        const raw = localStorage.getItem("orderData");
-        if (!raw) return;
-
-        try {
-          setOrder(JSON.parse(raw));
-        } catch {
-          console.log("Error while reading order data");
-        }
-      }, []);
-
-      
-      if (!order) {
-        return (
-          <div className="order-details-card">
-            <h2>No saved order</h2>
-            <p>
-              Please go back to the order page and fill in your order first.
-            </p>
-
-            <button
-              className="order-btn"
-              onClick={() => (window.location.href = "order.html")}
-            >
-              Go to order page
-            </button>
-          </div>
-        );
+      try {
+        return JSON.parse(raw);
+      } catch {
+        return null;
       }
+    }
 
-      const productName = PRODUCT_LABELS[order.product] || order.product;
-
+    /* Component shown when there is no saved order */
+    function EmptyState() {
       return (
         <div className="order-details-card">
-          <span className="order-badge">
-            Active • Order in progress
-          </span>
+          <h2>No saved order</h2>
+          <p>Please go back to the order page and create an order.</p>
 
-          <div className="details-header">
-            <div>
-              <h2>📦 Order Overview</h2>
-              <p>Review your order details before continuing.</p>
-            </div>
+          <button
+            className="order-btn btn btn-primary"
+            onClick={() => (window.location.href = "order.html")}
+          >
+            Go to order page
+          </button>
+        </div>
+      );
+    }
 
-            <div className="total-box">
-              <span>Total</span>
-              <strong>{order.total || "0€"}</strong>
-            </div>
+    /* Header section with total price */
+    function DetailsHeader({ total }) {
+      return (
+        <div className="details-header">
+          <div>
+            <h2 className="h4 mb-1">Order Overview</h2>
+            <p className="text-muted mb-0">
+              Review your order details before continuing.
+            </p>
           </div>
 
-          <div className="details-content">
-            <p>
-              <strong>Product:</strong> {productName}
-            </p>
-            <p>
-              <strong>Quantity:</strong> {order.quantity || 1}
-            </p>
-            {order.color && (
-              <p>
-                <strong>Color:</strong> {order.color}
-              </p>
-            )}
-            {order.material && (
-              <p>
-                <strong>Material:</strong> {order.material}
-              </p>
-            )}
-            {order.date && (
-              <p>
-                <strong>Delivery date:</strong> {order.date}
-              </p>
-            )}
-            {order.notes && (
-              <p>
-                <strong>Notes:</strong> {order.notes}
-              </p>
-            )}
+          <div className="total-box">
+            <span>Total</span>
+            <strong>{total || "0 EUR"}</strong>
           </div>
+        </div>
+      );
+    }
 
-          <div className="order-actions">
+    /* Main order information */
+    function DetailsContent({ order, productName }) {
+      return (
+        <div className="details-content">
+          <p><strong>Product:</strong> {productName}</p>
+          <p><strong>Quantity:</strong> {order.quantity || 1}</p>
+
+          {order.color && <p><strong>Color:</strong> {order.color}</p>}
+          {order.material && <p><strong>Material:</strong> {order.material}</p>}
+          {order.date && <p><strong>Delivery date:</strong> {order.date}</p>}
+          {order.notes && <p><strong>Notes:</strong> {order.notes}</p>}
+        </div>
+      );
+    }
+
+    /* Action buttons */
+    function Actions({ onBack, onContinue, onClear }) {
+      return (
+        <>
+          <div className="order-actions d-flex gap-2 justify-content-end flex-wrap">
             <button
-              className="order-btn order-btn-secondary"
-              onClick={() => (window.location.href = "order.html")}
+              className="order-btn order-btn-secondary btn btn-outline-dark"
+              onClick={onBack}
             >
               Back to order
             </button>
 
             <button
-              className="order-btn"
-              onClick={() => (window.location.href = "orderPayment.html")}
+              className="order-btn btn btn-primary"
+              onClick={onContinue}
             >
               Continue to payment
             </button>
           </div>
 
           <button
-            className="order-btn"
-            style={{ marginTop: "12px" }}
-            onClick={() => {
-              localStorage.removeItem("orderData");
-              window.location.reload();
-            }}
+            className="order-btn btn btn-danger w-100 mt-3"
+            onClick={onClear}
           >
             Clear order
           </button>
+        </>
+      );
+    }
+
+    /* Main order card */
+    function OrderDetailsCard({ order, onClear }) {
+      const productName = useMemo(() => {
+        return PRODUCT_LABELS[order.product] || order.product;
+      }, [order.product]);
+
+      return (
+        <div className="container p-0">
+          <div className="order-details-card">
+            <span className="order-badge badge bg-success">
+              Active order
+            </span>
+
+            <DetailsHeader total={order.total} />
+            <DetailsContent order={order} productName={productName} />
+
+            <Actions
+              onBack={() => (window.location.href = "order.html")}
+              onContinue={() => (window.location.href = "orderPayment.html")}
+              onClear={onClear}
+            />
+          </div>
         </div>
       );
     }
 
+    /* Root App component */
+    function App() {
+      const [order, setOrder] = useState(null);
+
+      useEffect(() => {
+        setOrder(readOrder());
+      }, []);
+
+      function handleClear() {
+        localStorage.removeItem(STORAGE_KEY);
+        setOrder(null);
+      }
+
+      return order ? (
+        <OrderDetailsCard order={order} onClear={handleClear} />
+      ) : (
+        <EmptyState />
+      );
+    }
+
+    /* Render React application */
     ReactDOM.createRoot(
       document.getElementById("order-details-root")
-    ).render(<OrderDetails />);
+    ).render(<App />);
   </script>
 
 </body>

@@ -112,6 +112,24 @@
   color: #e8e8e8;
 }
 
+/* e ban rregullimin e nav bar kur bootstrap eshte i shtuar */
+#navbar ul {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+#navbar li {
+  list-style: none;
+}
+
+#navbar a {
+  display: inline-block;
+}
 
 
 @media (max-width: 768px) {
