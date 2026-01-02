@@ -2,12 +2,7 @@
 
 /* Reset dhe variabla bazë */
 :root {
-  --primary-color: #8B7355; /* Kafe/verdhë e zbehtë për mobilier */
-  --secondary-color: #D4B996; /* Kafe e çelët */
-  --dark-color: #3A2C1C; /* Kafe e errët */
-  --light-color: #F5F1E8; /* Bej e çelët */
-  --text-color: #333;
-  --text-light: #666;
+ 
   --white: #fff;
   --gray-light: #f8f9fa;
   --border-radius: 4px;
@@ -24,8 +19,8 @@
 body {
   
   line-height: 1.6;
-  color: var(--text-color);
-  background-color: var(--white);
+  color: white;
+  background-color: white;
 }
 
 .container {
@@ -95,7 +90,7 @@ body {
 /* Seksioni Our Story */
 #ourStory {
   padding: 4rem 0;
-  background-color: var(--light-color);
+  background-color: white;
 }
 
 .ourStory__img img {
@@ -113,7 +108,7 @@ body {
 
 .ourStory__title {
   font-size: 2.5rem;
-  color: var(--dark-color);
+  color: #222;
   margin-bottom: 0.5rem;
   position: relative;
   padding-bottom: 0.5rem;
@@ -126,25 +121,25 @@ body {
   left: 0;
   width: 60px;
   height: 3px;
-  background-color: var(--primary-color);
+  background-color: #222;
 }
 
 .ourStory__subtitle {
   font-size: 1.2rem;
-  color: var(--primary-color);
+  color: #444;
   font-style: italic;
   margin-bottom: 1.5rem;
 }
 
 .ourStory__text {
-  color: var(--text-light);
+  color: black;
   line-height: 1.8;
 }
 
 /* Seksioni Our Goals */
 #ourGoals {
   padding: 4rem 0;
-  background-color: var(--white);
+  background-color: white;
 }
 
 .ourGoals__info {
@@ -154,7 +149,7 @@ body {
 
 .ourGoals__title {
   font-size: 2.5rem;
-  color: var(--dark-color);
+  color: #222;
   text-align: center;
   margin-bottom: 1.5rem;
   position: relative;
@@ -169,41 +164,17 @@ body {
   transform: translateX(-50%);
   width: 80px;
   height: 3px;
-  background-color: var(--primary-color);
+  background-color: #222;
 }
 
 .ourGoals__text {
-  color: var(--text-light);
+  color: black;
   line-height: 1.8;
   text-align: center;
   margin-bottom: 2rem;
 }
 
-/* Audio player styling */
-.audioSpan {
-  display: flex;
-  align-items: center;
-  margin-bottom: 1.5rem;
-  font-weight: 500;
-  color: var(--dark-color);
-}
 
-audio {
-  width: 100%;
-  max-width: 400px;
-  margin-left: 1rem;
-  height: 40px;
-}
-
-audio::-webkit-media-controls-panel {
-  background-color: var(--light-color);
-}
-
-audio::-webkit-media-controls-play-button,
-audio::-webkit-media-controls-mute-button {
-  background-color: var(--primary-color);
-  border-radius: 50%;
-}
 
 /* Gallery e fotove */
 .ourGoals__imgs__wrapper {
@@ -242,13 +213,13 @@ audio::-webkit-media-controls-mute-button {
 
 figcaption {
   font-style: italic;
-  color: var(--text-light);
+  color: #222;
   font-size: 0.9rem;
 }
 
 /* Footer styling */
 footer {
-  background-color: var(--dark-color);
+  background-color: #111;
   color: var(--white);
   padding: 3rem 0 1.5rem;
   margin-top: 3rem;
@@ -267,7 +238,7 @@ footer {
   display: flex;
   align-items: center;
   text-decoration: none;
-  color: var(--white);
+  color: white;
   margin-bottom: 1rem;
 }
 
@@ -283,7 +254,7 @@ footer {
 }
 
 .footer__desc {
-  color: rgba(255, 255, 255, 0.7);
+  color: white;
   margin-bottom: 1.5rem;
   line-height: 1.6;
 }
@@ -291,7 +262,7 @@ footer {
 .footer__socials__title {
   font-size: 1.1rem;
   margin-bottom: 1rem;
-  color: var(--white);
+  color: white;
 }
 
 .footer__socials__list {
@@ -308,19 +279,19 @@ footer {
   height: 36px;
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 50%;
-  color: var(--white);
+  color: white;
   transition: var(--transition);
 }
 
 .footer__socials__list a:hover {
-  background-color: var(--primary-color);
+  background-color: white;
   transform: translateY(-3px);
 }
 
 .footer__text__title {
   font-size: 1.2rem;
   margin-bottom: 1.2rem;
-  color: var(--white);
+  color: white;
 }
 
 .footer__text {
@@ -332,13 +303,13 @@ footer {
 }
 
 .footer__text a {
-  color: rgba(255, 255, 255, 0.7);
+  color:white;
   text-decoration: none;
   transition: var(--transition);
 }
 
 .footer__text a:hover {
-  color: var(--secondary-color);
+  color: white;
   padding-left: 5px;
 }
 
