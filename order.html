@@ -15,28 +15,29 @@
     
     <!--Order form-->
     <section class="order-section">
-      <h1 class="order-title">Bëje Porosinë Tënde</h1>
+      <h1 class="order-title">Place Your Order</h1>
 
       <p class="order-text">
-        Plotëso të dhënat dhe zgjidh produktin që dëshiron.
+        Fill in your details and choose the product you want.
       </p>
 
-      <form class="order-form" id="orderForm" onsubmit="">
+      <form class="order-form" id="orderForm" >
         <!-- Emri dhe telefoni -->
         <div class="form-row form-row-two">
           <div class="form-field">
-            <label for="fullName" class="form-label">Emri dhe Mbiemri</label>
+            <label for="fullName" class="form-label">Full Name</label>
             <input
               type="text"
               id="fullName"
               class="form-input"
-              placeholder="Filan fisteku"
+              placeholder="John Doe"
               required
             />
+            <small class="error" id="fullName-error"></small>
           </div>
 
           <div class="form-field">
-            <label for="phone" class="form-label">Telefoni</label>
+            <label for="phone" class="form-label">Phone</label>
             <input
               type="tel"
               id="phone"
@@ -44,6 +45,7 @@
               placeholder="+383 xx xxx xxx"
               required
             />
+            <small class="error" id="phone-error"></small>
           </div>
         </div>
 
@@ -55,52 +57,56 @@
               type="email"
               id="email"
               class="form-input"
-              placeholder="shembull@gmail.com"
+              placeholder="example@gmail.com"
               required
             />
+            <small class="error" id="email-error"></small>
           </div>
 
           <div class="form-field">
-            <label for="city" class="form-label">Qyteti</label>
+            <label for="city" class="form-label">City</label>
             <input
               type="text"
               id="city"
               class="form-input"
-              placeholder="Prishtinë"
+              placeholder="Prishtina"
               required
             />
+            <small class="error" id="city-error"></small>
           </div>
         </div>
 
         <!-- Adresa -->
         <div class="form-row">
           <div class="form-field">
-            <label for="address" class="form-label">Adresa</label>
+            <label for="address" class="form-label">Address</label>
             <input
               type="text"
               id="address"
               class="form-input"
-              placeholder="Rruga, nr., hyrja..."
+              placeholder="Street, number, entrance..."
               required
             />
+            <small class="error" id="address-error"></small>
           </div>
         </div>
 
         <!-- Produkti dhe sasia -->
         <div class="form-row form-row-two">
           <div class="form-field">
-            <label for="product" class="form-label">Zgjedh Produktin</label>
+            <label for="product" class="form-label">Choose Product</label>
             <select id="product" class="form-input" required>
-              <option value="" disabled selected>Zgjedhe produktin</option>
-              <option value="sofa" data-price="450">Divan Modern – 450€</option>
+              <option value="" disabled selected>Select a product</option>
+              <option value="sofa" data-price="450">Modern Sofa – 450€</option>
               <option value="chair" data-price="120">3</option>
               <option value="table" data-price="280">2</option>
               <option value="bed" data-price="520">1</option>
             </select>
+            <small class="error" id="product-error"></small>
           </div>
 
           <div class="form-field">
-            <label for="quantity" class="form-label">Sasia</label>
+            <label for="quantity" class="form-label">Quantity</label>
             <input
               type="number"
               id="quantity"
@@ -109,64 +115,77 @@
               value="1"
               required
             />
+            <small class="error" id="quantity-error"></small>
           </div>
         </div>
 
         <!-- Ngjyra dhe materiali -->
         <div class="form-row form-row-two">
           <div class="form-field">
-            <label for="color" class="form-label">Ngjyra</label>
+            <label for="color" class="form-label">Color</label>
             <select id="color" class="form-input">
-              <option value="" disabled selected>Zgjedhe ngjyrën</option>
+              <option value="" disabled selected>Select color</option>
 
-              <option value="white">E bardhë</option>
-              <option value="gray">Gri</option>
-              <option value="black">E zezë</option>
+              <option value="white">White</option>
+              <option value="gray">Gray</option>
+              <option value="black">Black</option>
             </select>
+            <small class="error" id="color-error"></small>
           </div>
 
           <div class="form-field">
-            <label for="material" class="form-label">Materiali</label>
+            <label for="material" class="form-label">Material</label>
             <select id="material" class="form-input">
-              <option value="" disabled selected>Zgjedhe materialin</option>
-              <option value="wood">Dru</option>
+              <option value="" disabled selected>Select material</option>
+              <option value="wood">Wood</option>
               <option value="metal">Metal</option>
-              <option value="fabric">Pëlhurë</option>
-              <option value="leather">Lëkurë</option>
+              <option value="fabric">Fabric</option>
+              <option value="leather">Leather</option>
             </select>
+            <small class="error" id="material-error"></small>
           </div>
         </div>
 
-        <!-- Data e dorëzimit -->
-        <div class="form-row">
-          <div class="form-field">
-            <label for="date" class="form-label">Data e Dorëzimit</label>
-            <input type="date" id="date" class="form-input" />
-          </div>
-        </div>
 
         <!-- Shënime shtesë -->
         <div class="form-row">
           <div class="form-field">
-            <label for="notes" class="form-label">Shënime Shtesë</label>
+            <label for="notes" class="form-label">Additional Notes</label>
             <textarea
               id="notes"
               class="form-input form-textarea"
               rows="4"
-              placeholder="Kati, hyrja, kërkesa të veçanta..."
+              placeholder="Floor, entrance, special requests..."
             ></textarea>
+            <small class="error" id="notes-error"></small>
           </div>
         </div>
 
+        <div class="form-row order-summary-row">
+          <div class="order-summary">
+            <span>Estimated total:</span>
+            <strong id="orderTotal">0€</strong>
+          </div>
+
         
-<div class="form-field" style="align-items: flex-end;">
-    <button type="submit" class="order-btn">Vazhdo te pagesa</button>
-  </div>
-        
+         <div class="form-field" style="align-items: flex-end;">
+          <button type="submit" class="order-btn">Continue to payment</button>
+         </div>
+          
+<div class="order-extra-actions">
+<button type="button" id="detailsBtn" class="order-btn">
+  View order details
+</button>
+</div>
+
         </div>
       </form>
     </section>
 
+    <div id="footer"></div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="JS/orderpage.js"></script>
     <script src="JS/script.js"></script>
+    <script src="JS/jQuery.js"></script>
   </body>
 </html>
