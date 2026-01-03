@@ -152,3 +152,73 @@ if (detailsBtn) {
 });
 
 
+document.addEventListener("DOMContentLoaded", () => {
+  const phoneInput = document.getElementById("phone");
+  if (!phoneInput) return;
+
+  const PREFIX = "+383 ";
+
+  function formatPhone(value) {
+    // hiq gjithcka pervec numrave
+    let digits = value.replace(/\D/g, "");
+
+    // nese user ka shkru 383 ne fillim, hiqe (sepse prefix e japim ne tekst)
+    if (digits.startsWith("383")) digits = digits.slice(3);
+
+    // merr max 8 shifra (44 + 189 + 111 = 2 + 3 + 3)
+    digits = digits.slice(0, 8);
+
+    const p1 = digits.slice(0, 2);
+    const p2 = digits.slice(2, 5);
+    const p3 = digits.slice(5, 8);
+
+    let out = PREFIX;
+    if (p1) out += p1;
+    if (p2) out += " " + p2;
+    if (p3) out += " " + p3;
+
+    return out;
+  }
+
+  // vendos prefix ne fillim
+  if (!phoneInput.value) phoneInput.value = PREFIX;
+
+  phoneInput.addEventListener("focus", () => {
+    if (!phoneInput.value) phoneInput.value = PREFIX;
+    if (!phoneInput.value.startsWith(PREFIX)) phoneInput.value = PREFIX;
+  });
+
+  phoneInput.addEventListener("input", () => {
+    const pos = phoneInput.selectionStart || 0;
+    const beforeLen = phoneInput.value.length;
+
+    phoneInput.value = formatPhone(phoneInput.value);
+
+    // mos lejo kursorin me hy para prefix
+    const afterLen = phoneInput.value.length;
+    const diff = afterLen - beforeLen;
+    const newPos = Math.max(PREFIX.length, pos + diff);
+    phoneInput.setSelectionRange(newPos, newPos);
+  });
+
+  phoneInput.addEventListener("keydown", (e) => {
+    // mos lejo me fshi prefix
+    if (
+      (e.key === "Backspace" || e.key === "Delete") &&
+      (phoneInput.selectionStart || 0) <= PREFIX.length
+    ) {
+      e.preventDefault();
+      phoneInput.value = PREFIX;
+      phoneInput.setSelectionRange(PREFIX.length, PREFIX.length);
+    }
+  });
+
+  // opsionale: ne submit kontrollo a eshte komplet
+  phoneInput.addEventListener("blur", () => {
+    // nese nuk i ka 8 shifra pas prefix, e le si eshte (ti mundesh me qit error)
+    const digits = phoneInput.value.replace(/\D/g, "");
+    // digits perfshin edhe 383, prandaj presim 11 gjithsej (383 + 8)
+    if (digits.length === 0) phoneInput.value = "";
+    else if (!phoneInput.value.startsWith(PREFIX)) phoneInput.value = formatPhone(phoneInput.value);
+  });
+});

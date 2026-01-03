@@ -23,11 +23,11 @@
     <div class="box">
       <div class="input-elementet">
         <h2>Contact Us</h2>
-        <input type="text" placeholder="Emri dhe Mbiemri" />
-        <input type="text" placeholder="Email Adresa" />
-        <input type="number" placeholder="+383 xx xxx xxx" />
-        <textarea placeholder="Shkruani mesazhin tuaj këtu..."></textarea>
-        <button type="submit">Dergo Mesazhin</button>
+        <input type="text" placeholder="Name" id="name"/>
+        <input type="text" placeholder="Email Adresa" id="email" />
+        <input type="number" placeholder="+383 xx xxx xxx" id="phone"/>
+        <textarea placeholder="Shkruani mesazhin tuaj këtu..." id="message"></textarea>
+        <button type="submit" id="sendBtn">Dergo Mesazhin</button>
       </div>
 
       <a href="#" class="pic-link">
@@ -35,63 +35,12 @@
       </a>
     </div>
 
-    <footer>
-      <div class="footer-content">
-        <div class="info-Icons">
-          <h3>Contact Info</h3>
-
-          <div class="text-icon">
-            <i class="fas fa-location-dot"></i>
-            <a href="#">Adem Jashari 210, Skenderaj 41000</a>
-          </div>
-
-          <div class="text-icon">
-            <i class="fas fa-location-dot"></i>
-            <a
-              href="https://www.google.com/maps/place/Royal+Mall/@42.6538179,21.1747672,17z"
-              >Rruga B, Prishtinë 10000</a
-            >
-          </div>
-
-          <div class="text-icon">
-            <i class="fa-solid fa-envelope"></i>
-            <a href="mailto:furniture@gmail.com">furniture@gmail.com</a>
-          </div>
-
-          <div class="text-icon">
-            <i class="fa-solid fa-phone"></i>
-            <a href="tel:+38344xxxxxx">+383 44 xxx xxx</a>
-          </div>
-
-          <div class="text-icon">
-            <i class="fa-brands fa-facebook"></i>
-            <a href="#">Facebook</a>
-          </div>
-        </div>
-
-        <div class="social-icons">
-          <h3>Follow Us</h3>
-
-          <div class="text-icon">
-            <i class="fa-brands fa-instagram"></i>
-            <a href="#">Furniture</a>
-          </div>
-
-          <div class="text-icon">
-            <i class="fa-brands fa-facebook"></i>
-            <a href="#">Furniture Kosova</a>
-          </div>
-
-          <div class="text-icon">
-            <i class="fa-brands fa-x-twitter"></i>
-            <a href="#">_furniture</a>
-          </div>
-        </div>
-      </div>
-
-      <p>CopyRight &copy;</p>
-    </footer>
+    <!-- Footer -->
+    <div id="footer"></div>
 
     <script src="JS/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="JS/contact.js"></script>
+
   </body>
 </html>

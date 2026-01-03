@@ -27,10 +27,12 @@ body {
   background: #f9fafb;
   border-radius: 14px;
   border: 1px solid #e5e7eb;
+  font-size: 13px;
 }
 
 .highlight-icon {
   font-size: 20px;
+  line-height: 1;
 }
 
 .highlight-item strong {
@@ -73,8 +75,7 @@ body {
   background: #f3f4f6;
 }
 
-.payment-method input:checked + span,
-.payment-method span:has(+ input:checked) {
+.payment-method input:checked + span {
   font-weight: 500;
 }
 
@@ -153,8 +154,9 @@ body {
 }
 
 .payment-check a {
-  color: #111;
+  color: blue;
   text-decoration: underline;
+  cursor: pointer;
 }
 
 .payment-btn {
@@ -171,6 +173,8 @@ body {
   letter-spacing: 0.05em;
   box-shadow: 0 10px 24px rgba(0,0,0,0.16);
   transition: 0.2s ease;
+  position: relative;
+  overflow: hidden;
 }
 
 .payment-btn:hover {
@@ -226,29 +230,6 @@ body {
   color: #333;
 }
 
-@media (max-width: 700px) {
-  .payment-section {
-    margin: 40px 12px 50px;
-    padding: 26px 18px 32px;
-  }
-
-  .checkout-highlights {
-    grid-template-columns: 1fr;
-  }
-
-  .form-row-two {
-    grid-template-columns: 1fr;
-  }
-}
-
-.payment-check a{
-   color: blue;
-  text-decoration: underline;
-  cursor: pointer;
-  width: 16px;
-}
-
-
 .ripple-effect {
   position: absolute;
   width: 120px;
@@ -266,48 +247,18 @@ body {
     opacity: 0;
   }
 }
-.order-btn,
-.payment-btn {
-  position: relative;
-  overflow: hidden;
-}
-
-
-.checkout-highlights {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-bottom: 25px;
-}
-
-.highlight-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  background: #f8f8ff;
-  border-radius: 10px;
-  padding: 10px 12px;
-  font-size: 13px;
-}
-
-.highlight-icon {
-  font-size: 20px;
-  line-height: 1;
-}
-
-.highlight-item strong {
-  display: block;
-  margin-bottom: 2px;
-}
-
-.highlight-item p {
-  margin: 0;
-  color: #555;
-  font-size: 12px;
-}
 
 @media (max-width: 700px) {
+  .payment-section {
+    margin: 40px 12px 50px;
+    padding: 26px 18px 32px;
+  }
+
   .checkout-highlights {
+    grid-template-columns: 1fr;
+  }
+
+  .form-row-two {
     grid-template-columns: 1fr;
   }
 }
