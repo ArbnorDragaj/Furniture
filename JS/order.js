@@ -1,4 +1,6 @@
+// Ekzekutohet pasi faqja të jetë ngarkuar plotësisht
 document.addEventListener("DOMContentLoaded", () => {
+  // Referencat kryesore të formës dhe inputeve
   const form = document.getElementById("payment-form");
 
   const cardNameInput = document.getElementById("card-name");
@@ -7,12 +9,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const cvvInput = document.getElementById("cvv");
   const termsCheckbox = document.getElementById("terms");
 
+  // Elementet për shfaqjen e mesazheve të gabimit
   const nameError = document.getElementById("card-name-error");
   const numberError = document.getElementById("card-number-error");
   const expiryError = document.getElementById("expiry-error");
   const cvvError = document.getElementById("cvv-error");
   const termsError = document.getElementById("terms-error");
 
+  // Pastron gabimet dhe stilet e gabimit
   function clearErrors() {
     [nameError, numberError, expiryError, cvvError, termsError].forEach(
       (e) => (e.textContent = "")
@@ -22,23 +26,27 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   }
 
+  // Vendos gabim në input përkatës
   function setError(input, errorEl, message) {
     input.classList.add("input-error");
     errorEl.textContent = message;
   }
 
+  // Formatimi automatik i numrit të kartelës
   cardNumberInput.addEventListener("input", (e) => {
     let v = e.target.value.replace(/\D/g, "");
     if (v.length > 16) v = v.slice(0, 16);
     e.target.value = v.replace(/(.{4})/g, "$1 ").trim();
   });
 
+  // Kufizimi i CVV në 3 shifra
   cvvInput.addEventListener("input", (e) => {
     let v = e.target.value.replace(/\D/g, "");
     if (v.length > 3) v = v.slice(0, 3);
     e.target.value = v;
   });
 
+  // Formatimi i datës së skadimit MM/YY
   expiryInput.addEventListener("input", (e) => {
     let v = e.target.value.replace(/\D/g, "");
     if (v.length > 4) v = v.slice(0, 4);
@@ -46,8 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
     else e.target.value = v;
   });
 
-  
-
+  // Validimi i përgjithshëm i formës së pagesës
   function validate() {
     clearErrors();
     let ok = true;
@@ -61,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (num.length < 16) {
       setError(cardNumberInput, numberError, "Duhet 16 shifra.");
       ok = false;
-    } 
+    }
 
     if (cvvInput.value.length !== 3) {
       setError(cvvInput, cvvError, "3 shifra.");
@@ -96,6 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return ok;
   }
 
+  // Submit i formës dhe konfirmimi i pagesës
   form.addEventListener("submit", (e) => {
     e.preventDefault();
     if (!validate()) return;
@@ -106,8 +114,8 @@ document.addEventListener("DOMContentLoaded", () => {
         title: "Pagesa u krye me sukses!",
         text: "Faleminderit për porosinë 😊",
       }).then(() => {
-    window.location.href = "index.html";
-  });
+        window.location.href = "index.html";
+      });
     } else {
       alert("Pagesa u krye me sukses!");
     }
