@@ -1,103 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="CSS/style.css" />
-  <title>A&O Furniture/Home</title>
 
-  <link rel="stylesheet" href="CSS/about.css">
-  <link rel="stylesheet" href="CSS/style.css">
-  <link rel="stylesheet" href="css/index.css">
- 
+  <title>Home</title>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="CSS/style.css" />
+  <link rel="stylesheet" href="css/index.css" />
 </head>
 
 <body>
 
   <!-- NAV -->
- <div id="navbar"></div>
+  <div id="navbar"></div>
 
- <script src="JS/script.js"></script>
+  <!-- Hero Section -->
+  <section id="hero">
+    <div class="container">
+      <div class="row">
 
- <!-- Hero Section -->
- <section id="hero">
-   <div class="container">
-     <div class="row">
-       
-       <div class="col-md-6 d-flex justify-content-center">
-         <div class="hero-left mt-5">
-           <h1 class="hero-heading mt-1">Shop the dream</h1>
- 
-           <p class="hero-info">
-             We create products designed with purpose and crafted for performance, inspiring confidence, 
-             elevating everyday experiences, and delivering quality you rely on. 
-             Every detail reflects our commitment to design, lasting value, and way to live.
-           </p>
- 
-           <div class="button-wrapper">
-             <a href="#ourSpecials" class="btn primary-btn">Explore More</a>
-             <a href="./order.html" class="btn">Order Now</a>
-           </div>
-         </div>
-       </div>
- 
-       <div class="col-md-6">
-         <div class="hero-img">
-           <img src="image/hero_pic_1.avif" alt="Hero image">
-         </div>
-       </div>
- 
-     </div>
-   </div>
- </section>
+        <div class="col-md-6 d-flex justify-content-center">
+          <div class="hero-left mt-5">
+            <h1 class="hero-heading mt-1">Shop the dream</h1>
+
+            <p class="hero-info">
+              We create products designed with purpose and crafted for performance, inspiring confidence,
+              elevating everyday experiences, and delivering quality you rely on.
+              Every detail reflects our commitment to design, lasting value, and way to live.
+            </p>
+
+            <div class="button-wrapper">
+              <!-- ✅ Explore More now goes to products page -->
+              <a href="products.html" class="btn primary-btn">Explore More</a>
+              <a href="order.html" class="btn">Order Now</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="hero-img">
+            <img src="image/hero_pic_1.avif" alt="Hero image" />
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
   <!-- End Hero Section -->
 
-
   <!-- Store Info Section -->
- <section id="storeInfo">
-   <div class="container">
-     <div class="storeInfo">
- 
-       <div class="storeInfo__item">
-         <div class="storeInfo__icon">
-           <img src="./image/clock_image.png" alt="Opening hours">
-         </div>
-         <h3 class="storeInfo__title">10 AM - 7 PM</h3>
-         <p class="storeInfo__text">Opening Hour</p>
-       </div>
- 
-       <div class="storeInfo__item">
-         <div class="storeInfo__icon">
-           <img src="./image/location_image.png" alt="Location">
-         </div>
-         <h3 class="storeInfo__title">Prishtinë, Kosovë</h3>
-         <p class="storeInfo__text">Address</p>
-       </div>
- 
-       <div class="storeInfo__item">
-         <div class="storeInfo__icon">
-           <img src="./image/phone_image.png" alt="Phone number">
-         </div>
-         <h3 class="storeInfo__title">+383 45 123 123</h3>
-         <p class="storeInfo__text">Call Now</p>
-       </div>
- 
-     </div>
-   </div>
- </section>
+  <section id="storeInfo">
+    <div class="container">
+      <div class="storeInfo">
+
+        <div class="storeInfo__item">
+          <div class="storeInfo__icon">
+            <img src="image/clock_image.png" alt="Opening hours" />
+          </div>
+          <h3 class="storeInfo__title">10 AM - 7 PM</h3>
+          <p class="storeInfo__text">Opening Hour</p>
+        </div>
+
+        <div class="storeInfo__item">
+          <div class="storeInfo__icon">
+            <img src="image/location_image.png" alt="Location" />
+          </div>
+          <h3 class="storeInfo__title">Prishtinë, Kosovë</h3>
+          <p class="storeInfo__text">Address</p>
+        </div>
+
+        <div class="storeInfo__item">
+          <div class="storeInfo__icon">
+            <img src="image/phone_image.png" alt="Phone number" />
+          </div>
+          <h3 class="storeInfo__title">+383 45 123 123</h3>
+          <p class="storeInfo__text">Call Now</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
   <!-- End Store Info Section -->
 
+  <!-- Top Sellers Section -->
+  <section id="topSellers">
+    <div class="container">
 
+      <div class="section-title">
+        <h2>Top Sellers</h2>
+        <p>Our most popular products.</p>
+      </div>
 
+      <div class="products-grid top-sellers-grid">
 
-  <!-- Specials, Products, Discount, Events, Why Us, Materials, Testimonials -->
+        <div class="product-card">
+          <div class="product-images-wrapper">
+            <div class="product-images">
+              <img src="image/product51.jpg" alt="Oakline Dining Table" />
+            </div>
+          </div>
+          <p class="product-name">Oakline Dining Table</p>
+          <p class="price">250€ - <span>/PIECE</span></p>
+          <a href="products.html" class="see-more-btn">See more</a>
+        </div>
 
-   <!-- Footer -->
-   <div id="footer"></div>
-  <!-- End Footer -->
+        <div class="product-card">
+          <div class="product-images-wrapper">
+            <div class="product-images">
+              <img src="image/product61.jpg" alt="Vetro Display Cabinet" />
+            </div>
+          </div>
+          <p class="product-name">Vetro Display Cabinet</p>
+          <p class="price">165€ - <span>/PIECE</span></p>
+          <a href="products.html" class="see-more-btn">See more</a>
+        </div>
+
+        <div class="product-card">
+          <div class="product-images-wrapper">
+            <div class="product-images">
+              <img src="image/product71.jpg" alt="Haven Solid Wood Table" />
+            </div>
+          </div>
+          <p class="product-name">Haven Solid Wood Table</p>
+          <p class="price">220€ - <span>/PIECE</span></p>
+          <a href="products.html" class="see-more-btn">See more</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- End Top Sellers Section -->
+
+  <!-- FOOTER -->
+  <div id="footer"></div>
+
 
   <script src="JS/script.js"></script>
-
 </body>
 </html>

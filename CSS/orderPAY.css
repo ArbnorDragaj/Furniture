@@ -1,7 +1,9 @@
+/* Background i faqes (gradient i lehtë) */
 body {
   background: linear-gradient(145deg, #eef1ff, #ffffff);
 }
 
+/* Kutia kryesore e pagesës (card layout, e qendruar) */
 .payment-section {
   max-width: 900px;
   margin: 70px auto;
@@ -12,6 +14,7 @@ body {
   box-shadow: 0 35px 65px rgba(0, 0, 0, 0.12);
 }
 
+/* Highlights sipër (3 kolona: delivery, security, support) */
 .checkout-highlights {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -19,6 +22,7 @@ body {
   margin-bottom: 26px;
 }
 
+/* Kartat e highlight-it */
 .highlight-item {
   display: flex;
   gap: 10px;
@@ -47,6 +51,7 @@ body {
   font-size: 12px;
 }
 
+/* Zgjedhja e metodës së pagesës (radio buttons në qendër) */
 .payment-methods {
   display: flex;
   justify-content: center;
@@ -54,6 +59,7 @@ body {
   margin-bottom: 28px;
 }
 
+/* Butonat e metodave të pagesës (pill style) */
 .payment-method {
   display: flex;
   align-items: center;
@@ -67,6 +73,7 @@ body {
   transition: 0.2s ease;
 }
 
+/* Ngjyra e radios (accent-color) */
 .payment-method input {
   accent-color: #111111;
 }
@@ -75,10 +82,12 @@ body {
   background: #f3f4f6;
 }
 
+/* Thekson metodën e selektuar */
 .payment-method input:checked + span {
   font-weight: 500;
 }
 
+/* Forma kryesore e pagesës */
 .payment-form {
   margin-top: 6px;
 }
@@ -89,6 +98,7 @@ body {
   font-weight: 600;
 }
 
+/* Organizimi i fushave të formës */
 .form-row {
   display: flex;
   flex-direction: column;
@@ -96,12 +106,14 @@ body {
   margin-bottom: 16px;
 }
 
+/* Dy fusha në një rresht (p.sh. card number + CVV) */
 .form-row-two {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
 }
 
+/* Strukturë standarde label + input */
 .form-field {
   display: flex;
   flex-direction: column;
@@ -114,6 +126,7 @@ body {
   font-weight: 500;
 }
 
+/* Stilizimi i inputave (hover/focus) */
 .form-input {
   padding: 11px 12px;
   border-radius: 10px;
@@ -135,12 +148,14 @@ body {
   box-shadow: 0 0 0 2px rgba(17, 17, 17, 0.08);
 }
 
+/* Mesazhet e gabimeve poshtë inputave */
 .error {
   color: #dc2626;
   font-size: 12px;
   min-height: 15px;
 }
 
+/* Checkbox për Terms & Conditions */
 .payment-check {
   display: flex;
   align-items: flex-start;
@@ -159,6 +174,7 @@ body {
   cursor: pointer;
 }
 
+/* Butoni kryesor i pagesës + support për ripple effect */
 .payment-btn {
   margin-top: 20px;
   width: 100%;
@@ -182,6 +198,7 @@ body {
   transform: translateY(-1px);
 }
 
+/* Popup overlay për Terms & Conditions (fillimisht i fshehur) */
 .popup {
   position: fixed;
   inset: 0;
@@ -192,10 +209,12 @@ body {
   z-index: 999;
 }
 
+/* Kur i shtohet klasa show, popup shfaqet */
 .popup.show {
   display: flex;
 }
 
+/* Kutia e popup-it (scroll nëse teksti është i gjatë) */
 .popup-content {
   max-width: 700px;
   max-height: 80vh;
@@ -211,12 +230,14 @@ body {
   margin-bottom: 12px;
 }
 
+/* Stil i paragrafëve të Terms */
 .terms-paragraph {
   font-size: 14px;
   margin-bottom: 10px;
   line-height: 1.5;
 }
 
+/* Ikona X për mbyllje */
 .close {
   float: right;
   font-size: 24px;
@@ -230,6 +251,7 @@ body {
   color: #333;
 }
 
+/* Ripple animation që përdoret te butoni (nga jQuery.js) */
 .ripple-effect {
   position: absolute;
   width: 120px;
@@ -248,6 +270,7 @@ body {
   }
 }
 
+/* Responsive për telefona: layout bëhet një kolonë */
 @media (max-width: 700px) {
   .payment-section {
     margin: 40px 12px 50px;
