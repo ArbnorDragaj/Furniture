@@ -1,9 +1,42 @@
-/* Hero Section */
+/* =========================
+   Layout / Container
+   ========================= */
+
+/* Keep sections centered + away from screen edges */
+#hero .container,
+#storeInfo .container,
+#topSellers .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* =========================
+   Hero Section
+   ========================= */
 
 #hero {
   padding: 80px 0;
 }
 
+/* Make hero text left + image right (no bootstrap needed) */
+#hero .row {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+#hero .col-md-6:first-child,
+#hero .col-md-6:last-child {
+  flex: 1;
+}
+
+#hero .col-md-6:last-child {
+  display: flex;
+  justify-content: center;
+}
+
+/* Left content */
 .hero-left {
   max-width: 500px;
 }
@@ -22,10 +55,10 @@
 }
 
 /* Buttons */
-
 .button-wrapper {
   display: flex;
   gap: 15px;
+  flex-wrap: wrap;
 }
 
 .btn {
@@ -35,12 +68,13 @@
   border-radius: 5px;
   border: 1px solid #000;
   color: #000;
-  transition: all 0.3s ease;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
 .btn:hover {
   background-color: #000;
   color: #fff;
+  transform: translateY(-1px);
 }
 
 .primary-btn {
@@ -53,14 +87,17 @@
   color: #000;
 }
 
-/* Image */
-
+/* Hero Image */
 .hero-img img {
   max-width: 100%;
   height: auto;
+  display: block;
 }
 
-/* Store Info Section */
+/* =========================
+   Store Info Section
+   ========================= */
+
 #storeInfo {
   padding: 60px 0;
 }
@@ -70,35 +107,28 @@
   justify-content: center;
   gap: 30px;
   flex-wrap: wrap;
-
-  /* IMPORTANT: equal height children */
   align-items: stretch;
 }
 
-/* ENTIRE BLOCK */
 .storeInfo__item {
   text-align: center;
-  max-width: 260px;
-  width: 260px;              /* forces same width */
+  width: 260px;
   padding: 25px 20px;
-
   border: 2px solid #000;
   border-radius: 10px;
 
-  display: flex;             /* enables equal height layout */
+  display: flex;
   flex-direction: column;
   justify-content: center;
 
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* OPTIONAL hover */
 .storeInfo__item:hover {
   transform: translateY(-4px);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
 
-/* ICON */
 .storeInfo__icon {
   margin-bottom: 15px;
 }
@@ -109,7 +139,6 @@
   object-fit: contain;
 }
 
-/* TEXT */
 .storeInfo__title {
   font-size: 18px;
   font-weight: 600;
@@ -119,4 +148,131 @@
 .storeInfo__text {
   font-size: 14px;
   color: #555;
+}
+
+/* =========================
+   Top Sellers (HOME PAGE)
+   No arrows, no slider, no order button
+   ========================= */
+
+#topSellers {
+  padding: 80px 0;
+}
+
+#topSellers .section-title {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+#topSellers .section-title h2 {
+  margin-bottom: 10px;
+}
+
+#topSellers .section-title p {
+  margin: 0;
+  opacity: 0.8;
+}
+
+/* Grid (3 columns) */
+#topSellers .top-sellers-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  align-items: stretch;
+}
+
+/* Card */
+#topSellers .product-card {
+  border: 0.5px solid #e0e0e0;
+  padding: 18px;
+  text-align: center;
+  background: #fff;
+
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+#topSellers .product-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+}
+
+/* Image */
+#topSellers .product-images-wrapper {
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+
+#topSellers .product-images {
+  height: 100%;
+  width: 100%;
+}
+
+#topSellers .product-images img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Text */
+#topSellers .product-name {
+  font-size: 15px;
+  line-height: 1.4;
+  margin: 6px 0;
+}
+
+#topSellers .price {
+  font-weight: 600;
+  margin: 0 0 14px;
+}
+
+#topSellers .price span {
+  font-weight: 400;
+  opacity: 0.8;
+}
+
+/* See more button */
+#topSellers .see-more-btn {
+  margin-top: auto;
+  display: inline-block;
+  padding: 10px 14px;
+  border: 1px solid #000;
+  text-decoration: none;
+  color: #000;
+  font-weight: 500;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+#topSellers .see-more-btn:hover {
+  background-color: #000;
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* =========================
+   Responsive
+   ========================= */
+
+@media (max-width: 900px) {
+  #hero .row {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .button-wrapper {
+    justify-content: center;
+  }
+
+  #topSellers .top-sellers-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #topSellers .product-images-wrapper {
+    height: 220px;
+  }
 }
