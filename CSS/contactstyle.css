@@ -49,3 +49,12 @@
   background-color: #444;
   transition: 0.3s;
 }
+
+
+.error-msg {
+  color: red;
+  font-size: 12px;
+  margin-top: 4px;
+  display: block;
+}
+
