@@ -1,43 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Meta tags për kodim korrekt dhe responsive design -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- CSS specifik për faqen e pagesës dhe stile globale -->
     <link rel="stylesheet" href="CSS/orderPAY.css" />
     <link rel="stylesheet" href="CSS/style.css" />
+
+    <!-- Titulli i faqes -->
     <title>A&O Furniture/PAYMENT method</title>
   </head>
   <body>
+
+    <!-- Navbar-i ngarkohet dinamikisht përmes JavaScript -->
     <div id="navbar"></div>
+
+    <!-- Seksioni kryesor i pagesës -->
     <section class="payment-section">
 
-        <div class="checkout-highlights">
-    <div class="highlight-item">
-      <span class="highlight-icon">🚚</span>
-      <div>
-        <strong>Fast delivery (3–5 business days)</strong>
-        <p>We deliver your order anywhere in Kosovo.</p>
-      </div>
-    </div>
+      <!-- Informacione shtesë për dërgesën, sigurinë dhe mbështetjen -->
+      <div class="checkout-highlights">
 
-    <div class="highlight-item">
-      <span class="highlight-icon">🔒</span>
-      <div>
-        <strong>100% secure payment</strong>
-        <p>Your card details are encrypted and never stored.</p>
-      </div>
-    </div>
+        <!-- Informacion për dërgesën -->
+        <div class="highlight-item">
+          <span class="highlight-icon">🚚</span>
+          <div>
+            <strong>Fast delivery (3–5 business days)</strong>
+            <p>We deliver your order anywhere in Kosovo.</p>
+          </div>
+        </div>
 
-    <div class="highlight-item">
-      <span class="highlight-icon">☎️</span>
-      <div>
-        <strong>Customer support 09:00–18:00</strong>
-        <p>Need help? Call us at +383 45 123 123git.</p>
-      </div>
-    </div>
-  </div>
+        <!-- Informacion për sigurinë e pagesës -->
+        <div class="highlight-item">
+          <span class="highlight-icon">🔒</span>
+          <div>
+            <strong>100% secure payment</strong>
+            <p>Your card details are encrypted and never stored.</p>
+          </div>
+        </div>
 
-  
+        <!-- Informacion për mbështetjen ndaj klientëve -->
+        <div class="highlight-item">
+          <span class="highlight-icon">☎️</span>
+          <div>
+            <strong>Customer support 09:00–18:00</strong>
+            <p>Need help? Call us at +383 45 123 123git.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Zgjedhja e metodës së pagesës -->
       <div class="payment-methods">
         <label class="payment-method">
           <input type="radio" name="payMethod" checked />
@@ -49,10 +63,14 @@
         </label>
       </div>
 
+      <!-- Forma për pagesë -->
       <form class="payment-form" id="payment-form">
+
+        <!-- Titulli i formës -->
         <h1 class="payment-title">Payment details</h1>
 
-          <label class="form-label">Cardholder name</label>
+        <!-- Fusha për emrin e mbajtësit të kartelës -->
+        <label class="form-label">Cardholder name</label>
         <div class="form-field">
           <input
             id="card-name"
@@ -64,6 +82,7 @@
           <small class="error" id="card-name-error"></small>
         </div>
 
+        <!-- Fusha për numrin e kartelës dhe CVV -->
         <div class="form-row form-row-two">
           <div class="form-field">
             <label class="form-label">Card number</label>
@@ -90,6 +109,7 @@
           </div>
         </div>
 
+        <!-- Fusha për datën e skadimit të kartelës -->
         <div class="form-field">
           <label class="form-label">Expiry date</label>
           <input
@@ -102,6 +122,7 @@
           <small class="error" id="expiry-error"></small>
         </div>
 
+        <!-- Pranimi i kushteve dhe rregullave -->
         <label class="payment-check">
           <input id="terms" type="checkbox" required />
           <span>
@@ -111,15 +132,22 @@
         </label>
         <small class="error" id="terms-error"></small>
 
+        <!-- Butoni për kryerjen e pagesës -->
         <button type="submit" class="payment-btn">Pay securely</button>
       </form>
     </section>
 
+    <!-- Popup për Terms and Conditions -->
     <div id="popup" class="popup">
       <div class="popup-content">
+
+        <!-- Butoni për mbylljen e popup-it -->
         <span class="close" id="closePopup">&times;</span>
+
+        <!-- Titulli i popup-it -->
         <h2>Terms and Conditions</h2>
 
+        <!-- Përmbajtja e kushteve -->
         <p class="terms-paragraph">
           1. Acceptance of Terms  
           By accessing or using this website, you agree to be bound by these
@@ -151,7 +179,7 @@
 
         <p class="terms-paragraph">
           6. Disclaimer  
-          The website is provided “as is” without warranties of any kind.
+          The website is provided as is without warranties of any kind.
         </p>
 
         <p class="terms-paragraph">
@@ -176,18 +204,20 @@
           <a href="mailto:ad.furniture@gmail.com">ad.furniture@gmail.com</a>.
         </p>
 
+        <!-- Informacion për përditësimin e fundit -->
         Last updated: 2025
-
       </div>
     </div>
 
+    <!-- Footer-i ngarkohet dinamikisht -->
     <div id="footer"></div>
 
-<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="JS/order.js"></script>
-<script src="JS/jQuery.js"></script>
-<script src="JS/script.js"></script>
+    <!-- Librari dhe skripta JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="JS/order.js"></script>
+    <script src="JS/jQuery.js"></script>
+    <script src="JS/script.js"></script>
 
   </body>
 </html>
