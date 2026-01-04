@@ -115,7 +115,7 @@ const footerHTML = `
     <div class="footer-column">
       <h4 class="footer-heading">Support</h4>
       <ul class="footer-list">
-        <li><a href="#">Contact</a></li>
+        <li><a href="contact.html">Contact</a></li>
         <li><a href="#">Support Center</a></li>
         <li><a href="#">Feedback</a></li>
       </ul>
